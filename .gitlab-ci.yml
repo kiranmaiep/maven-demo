@@ -1,0 +1,30 @@
+image: maven:3.9.9-eclipse-temurin-17
+
+cache:
+  paths:
+    - .m2/repository
+
+stages: [build, test, package]
+
+build:
+  stage: build
+  script:
+    - mvn -B -q -DskipTests clean compile
+
+test:
+  stage: test
+  script:
+    - mvn -B -q test
+  artifacts:
+    when: always
+    reports:
+      junit: target/surefire-reports/*.xml
+
+package:
+  stage: package
+  script:
+    - mvn -B -q package
+  artifacts:
+    paths:
+      - target/*.jar
+    expire_in: 1 week
