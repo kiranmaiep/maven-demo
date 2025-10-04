@@ -11,5 +11,6 @@ public class App
         System.out.println( "Hello World!" );
          System.out.println("Hello, DevOps with Maven!");
          System.out.println("Hello again");
+System.out.println("pushing both");
     }
 }
